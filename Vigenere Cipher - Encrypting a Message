@@ -1,0 +1,36 @@
+#Vigenere cipher
+def vigenere_encrypt():
+    alphabet_string = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
+    word = input('Type a string to encrypt ')
+    index_key_list = []
+    index_word_list = []
+    index = 0
+    output_list = []
+    key = input('Type in a string that will be used to encrypt the string you entered earlier ')
+    key_length = len(key)
+    word_length = len(word)
+    output_word = ''
+
+    for l in word:
+        indexver = alphabet_string.index(l)
+        index_word_list.append(indexver)
+
+    for x in key:
+        indexver = alphabet_string.index(x)
+        index_key_list.append(indexver)
+
+    for n in index_key_list:
+        variable = n + index_word_list[index]
+        output_list.append(variable)
+        index = index + 1
+        if word_length > len(index_key_list):
+            index = index - 1
+            index_key_list.append(index_key_list[index])
+            index = index + 1
+
+    for i in output_list:
+        string_letter = alphabet_string[i]
+        output_word += string_letter
+    print(output_word)
+
+vigenere_encrypt()
