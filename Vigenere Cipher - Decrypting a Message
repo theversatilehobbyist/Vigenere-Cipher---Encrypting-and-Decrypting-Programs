@@ -1,0 +1,46 @@
+def vigenere_decrypt():
+    alphabet_string = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
+    word = input('Type a string to encrypt ')
+    index_key_list = []
+    index_word_list = []
+    index = 0
+    output_list = []
+    key = input('Type in a string that will be used to encrypt the string you entered earlier ')
+    key_length = len(key)
+    word_length = len(word)
+    output_word = ''
+
+    for w in word:
+        indexver = alphabet_string.index(w)
+        index_word_list.append(indexver)
+
+    for k in key:
+        indexver = alphabet_string.index(k)
+        index_key_list.append(indexver)
+
+    for x in index_key_list:
+        if x > index_word_list[1]:
+            variable = x - index_word_list[index]
+            output_list.append(variable)
+            index = index + 1
+            if word_length > len(index_key_list):
+                index = index - 1
+                index_key_list.append(index_key_list[index])
+                index = index + 1
+
+        elif x < index_word_list[1]:
+            variable = index_word_list[index] - x
+            output_list.append(variable)
+            index = index + 1
+            if word_length > len(index_key_list):
+                index = index - 1
+                index_key_list.append(index_key_list[index])
+                index = index + 1
+
+    for i in output_list:
+        string_letter = alphabet_string[i]
+        output_word += string_letter
+    print(output_word)
+
+
+vigenere_decrypt()
